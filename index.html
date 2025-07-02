@@ -4,101 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Reflex Project</title>
-
-  <!-- стили подключаем отдельно -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!-- Лоадер (2 с) -->
-  <div id="loader">
-    <p>Пожалуйста, подождите, идёт загрузка…</p>
-  </div>
+  <div id="loader"><p>Пожалуйста, подождите…</p></div>
 
   <!-- Видео-фон -->
   <video id="bg-video" autoplay muted loop playsinline>
     <source src="bg.mp4" type="video/mp4" />
   </video>
-  <!-- лёгкий оверлей, чтобы текст читался -->
-  <div id="video-overlay"></div>
+  <div id="overlay"></div>
 
   <!-- Всё приложение -->
   <div id="app">
 
-    <!-- Заголовок -->
-    <header>
-      <h1 id="header-title">Your personal creator is reflex</h1>
-    </header>
-
-    <!-- Динамический контент -->
-    <main>
-      <!-- сюда js будет подставлять текст/формы -->
-      <div id="content"></div>
-    </main>
-
-    <!-- Кнопки главного меню (фиксированы внизу) -->
-    <nav class="menu-bottom">
-      <button class="btn" data-section="create">Создать</button>
-      <button class="btn" data-section="profile">Профиль</button>
-      <button class="btn" data-section="help">Помощь</button>
-    </nav>
-
-    <!-- --- РАЗДЕЛЫ (изначально скрыты, открываются через JS) --- -->
-
-    <!-- +++ Create +++ -->
-    <section id="create-menu" class="section hidden">
-      <button class="btn service-btn" data-service="bot">Создать Telegram-бота</button>
-      <button class="btn service-btn" data-service="site">Создать сайт</button>
-      <button class="btn service-btn" data-service="miniapp">Создать Mini-app</button>
-      <button class="btn back-btn">Назад</button>
+    <!-- Главная (заголовок + 3 кнопки) -->
+    <section id="main-section" class="section visible">
+      <h1 class="title">Your personal creator is reflex</h1>
+      <nav class="menu-bottom">
+        <button id="btn-create"  class="btn" data-section="create">Создать</button>
+        <button id="btn-profile" class="btn" data-section="profile">Профиль</button>
+        <button id="btn-help"    class="btn" data-section="help">Помощь</button>
+      </nav>
     </section>
 
-    <!-- детальное описание выбранной услуги -->
-    <section id="service-details" class="section hidden">
-      <div id="service-description"></div>
-      <form id="service-form" class="form"></form>
-
-      <h3>Оплата</h3>
-      <div class="payment-methods">
-        <button class="btn" id="pay-card">Оплата картой</button>
-        <button class="btn" id="pay-crypto">Оплата CryptoBot</button>
+    <!-- Раздел СОЗДАТЬ -->
+    <section id="create-section" class="section">
+      <h2>Выберите услугу</h2>
+      <div class="col">
+        <button class="btn service" data-service="bot">Telegram бот</button>
+        <button class="btn service" data-service="site">Сайт</button>
+        <button class="btn service" data-service="mini">Mini App</button>
       </div>
-
-      <button class="btn back-btn">Назад</button>
+      <div id="service-details"></div>
+      <button class="btn back">Назад</button>
     </section>
 
-    <!-- +++ Профиль +++ -->
-    <section id="profile-section" class="section hidden">
-      <div id="profile-info"></div>
+    <!-- Раздел ПРОФИЛЬ -->
+    <section id="profile-section" class="section">
+      <div id="profile-box">
+        <p>👤 @username</p>
+        <p>💰 Баланс: 0 ₽</p>
+      </div>
       <h3>Заказы</h3>
-      <div id="orders-list"></div>
-
+      <div id="orders-box"></div>
       <button class="btn" id="top-up">Пополнить баланс</button>
-      <!-- кнопка для админов будет показана через JS при необходимости -->
-      <button class="btn admin-only hidden" data-section="admin">Админ-Панель</button>
-      <button class="btn back-btn">Назад</button>
+      <button class="btn back">Назад</button>
     </section>
 
-    <!-- +++ Админ-панель +++ -->
-    <section id="admin-section" class="section hidden">
-      <h2>Админ-Панель</h2>
-      <button class="btn admin-btn" data-admin="orders">Оплаченные заказы</button>
-      <button class="btn admin-btn" data-admin="stats">Статистика</button>
-      <button class="btn admin-btn" data-admin="balance">Изменить баланс пользователя</button>
-      <button class="btn admin-btn" data-admin="block">Заблокировать / Разблокировать</button>
-      <button class="btn back-btn">Назад</button>
-    </section>
-
-    <!-- +++ Помощь +++ -->
-    <section id="help-section" class="section hidden">
+    <!-- Раздел ПОМОЩЬ -->
+    <section id="help-section" class="section">
       <h2>Помощь</h2>
-      <p>Здесь инструкции: как оформить заказ, пополнить баланс, ответы на частые вопросы.</p>
-      <button class="btn back-btn">Назад</button>
+      <p>Как сделать заказ, оплатить, и т.д.</p>
+      <button class="btn back">Назад</button>
     </section>
 
   </div><!-- /app -->
 
-  <!-- логика -->
   <script src="app.js"></script>
 </body>
 </html>
