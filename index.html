@@ -3,41 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reflex Главная</title>
+  <title>The Reflex Project</title>
+
+  <!-- стили подключаем отдельно -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <!-- Лоадер (2 с) -->
+  <div id="loader">
+    <p>Пожалуйста, подождите, идёт загрузка…</p>
+  </div>
 
   <!-- Видео-фон -->
   <video id="bg-video" autoplay muted loop playsinline>
     <source src="bg.mp4" type="video/mp4" />
   </video>
+  <!-- лёгкий оверлей, чтобы текст читался -->
+  <div id="video-overlay"></div>
 
-  <!-- Оверлей для затемнения -->
-  <div id="overlay"></div>
-
-  <!-- Контент страницы -->
+  <!-- Всё приложение -->
   <div id="app">
 
-    <!-- Верхняя надпись -->
+    <!-- Заголовок -->
     <header>
-      <h1>Создатель Reflex</h1>
+      <h1 id="header-title">Your personal creator is reflex</h1>
     </header>
 
-    <!-- Основной блок с кнопками или контентом -->
+    <!-- Динамический контент -->
     <main>
-      <div id="button-container" class="button-container">
-        <button class="btn" data-section="section1">Кнопка 1</button>
-        <button class="btn" data-section="section2">Кнопка 2</button>
-        <button class="btn" data-section="section3">Кнопка 3</button>
-      </div>
-
-      <!-- Тут появится новый контент -->
-      <div id="content" class="hidden"></div>
+      <!-- сюда js будет подставлять текст/формы -->
+      <div id="content"></div>
     </main>
 
-  </div>
+    <!-- Кнопки главного меню (фиксированы внизу) -->
+    <nav class="menu-bottom">
+      <button class="btn" data-section="create">Создать</button>
+      <button class="btn" data-section="profile">Профиль</button>
+      <button class="btn" data-section="help">Помощь</button>
+    </nav>
 
+    <!-- --- РАЗДЕЛЫ (изначально скрыты, открываются через JS) --- -->
+
+    <!-- +++ Create +++ -->
+    <section id="create-menu" class="section hidden">
+      <button class="btn service-btn" data-service="bot">Создать Telegram-бота</button>
+      <button class="btn service-btn" data-service="site">Создать сайт</button>
+      <button class="btn service-btn" data-service="miniapp">Создать Mini-app</button>
+      <button class="btn back-btn">Назад</button>
+    </section>
+
+    <!-- детальное описание выбранной услуги -->
+    <section id="service-details" class="section hidden">
+      <div id="service-description"></div>
+      <form id="service-form" class="form"></form>
+
+      <h3>Оплата</h3>
+      <div class="payment-methods">
+        <button class="btn" id="pay-card">Оплата картой</button>
+        <button class="btn" id="pay-crypto">Оплата CryptoBot</button>
+      </div>
+
+      <button class="btn back-btn">Назад</button>
+    </section>
+
+    <!-- +++ Профиль +++ -->
+    <section id="profile-section" class="section hidden">
+      <div id="profile-info"></div>
+      <h3>Заказы</h3>
+      <div id="orders-list"></div>
+
+      <button class="btn" id="top-up">Пополнить баланс</button>
+      <!-- кнопка для админов будет показана через JS при необходимости -->
+      <button class="btn admin-only hidden" data-section="admin">Админ-Панель</button>
+      <button class="btn back-btn">Назад</button>
+    </section>
+
+    <!-- +++ Админ-панель +++ -->
+    <section id="admin-section" class="section hidden">
+      <h2>Админ-Панель</h2>
+      <button class="btn admin-btn" data-admin="orders">Оплаченные заказы</button>
+      <button class="btn admin-btn" data-admin="stats">Статистика</button>
+      <button class="btn admin-btn" data-admin="balance">Изменить баланс пользователя</button>
+      <button class="btn admin-btn" data-admin="block">Заблокировать / Разблокировать</button>
+      <button class="btn back-btn">Назад</button>
+    </section>
+
+    <!-- +++ Помощь +++ -->
+    <section id="help-section" class="section hidden">
+      <h2>Помощь</h2>
+      <p>Здесь инструкции: как оформить заказ, пополнить баланс, ответы на частые вопросы.</p>
+      <button class="btn back-btn">Назад</button>
+    </section>
+
+  </div><!-- /app -->
+
+  <!-- логика -->
   <script src="app.js"></script>
 </body>
 </html>
