@@ -2,79 +2,42 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Reflex Project</title>
-
-  <!-- внешний файл стилей -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reflex Главная</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Лоадер -->
-  <div id="loader">
-    <p>Пожалуйста, подождите, идет загрузка…</p>
-  </div>
 
-  <!-- Анимированный фон (замени bg.mp4 на свой файл/ссылку) -->
-  <video id="bg-video" autoplay muted playsinline>
+  <!-- Видео-фон -->
+  <video id="bg-video" autoplay muted loop playsinline>
     <source src="bg.mp4" type="video/mp4" />
   </video>
 
-  <!-- Главный экран -->
-  <div id="main-content" class="hidden fade-in">
-    <h1 class="main-title">Your personal creator is reflex</h1>
+  <!-- Оверлей для затемнения -->
+  <div id="overlay"></div>
 
-    <div id="main-menu" class="menu">
-      <button class="btn" onclick="openSection('create-menu')">Создать</button>
-      <button class="btn" onclick="openProfile()">Профиль</button>
-      <button class="btn" onclick="openSection('help-section')">Помощь</button>
-    </div>
+  <!-- Контент страницы -->
+  <div id="app">
+
+    <!-- Верхняя надпись -->
+    <header>
+      <h1>Создатель Reflex</h1>
+    </header>
+
+    <!-- Основной блок с кнопками или контентом -->
+    <main>
+      <div id="button-container" class="button-container">
+        <button class="btn" data-section="section1">Кнопка 1</button>
+        <button class="btn" data-section="section2">Кнопка 2</button>
+        <button class="btn" data-section="section3">Кнопка 3</button>
+      </div>
+
+      <!-- Тут появится новый контент -->
+      <div id="content" class="hidden"></div>
+    </main>
+
   </div>
 
-  <!-- Меню «Создать» -->
-  <div id="create-menu" class="hidden section fade-in">
-    <button class="btn" onclick="openService('bot')">Создать Telegram-бота</button>
-    <button class="btn" onclick="openService('site')">Создать сайт</button>
-    <button class="btn" onclick="openService('miniapp')">Создать Mini-app Telegram</button>
-    <button class="btn back" onclick="goBack()">Назад</button>
-  </div>
-
-  <!-- Детали услуги -->
-  <div id="service-details" class="hidden section fade-in">
-    <div id="service-description"></div>
-
-    <form id="service-form" class="form"></form>
-
-    <div class="payment-methods">
-      <h3>Выберите способ оплаты:</h3>
-      <button class="btn" onclick="payByCard()">Оплатить картой</button>
-      <button class="btn" onclick="payByCryptoBot()">Оплатить CryptoBot</button>
-    </div>
-
-    <button class="btn back" onclick="goBack('create-menu')">Назад</button>
-  </div>
-
-  <!-- Профиль -->
-  <div id="profile-section" class="hidden section fade-in">
-    <div id="profile-info"></div>
-
-    <h3>Заказы</h3>
-    <div id="orders-list"></div>
-
-    <button class="btn" onclick="topUp()">Пополнить баланс</button>
-    <button class="btn back" onclick="goBack()">Назад</button>
-  </div>
-
-  <!-- Помощь -->
-  <div id="help-section" class="hidden section fade-in">
-    <h2>Помощь</h2>
-    <p>
-      Здесь вы найдёте подробное описание всех функций приложения и инструкции
-      по созданию заказов и пополнению баланса.
-    </p>
-    <button class="btn back" onclick="goBack()">Назад</button>
-  </div>
-
-  <!-- логика приложения -->
   <script src="app.js"></script>
 </body>
 </html>
